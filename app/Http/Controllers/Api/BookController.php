@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Book;
 use App\Http\Controllers\Controller;
+use App\Repositories\BookRepository;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    protected $model;
+
+    public function __construct(Book $book)
+    {
+        $this->model = new BookRepository($book);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,17 +23,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->model->all();
     }
 
     /**
@@ -36,7 +34,13 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+           'name'   => 'required',
+           'author' => ' required'
+       ]);
+
+       // create record and pass in only fields that are fillable
+       return $this->model->create($request->only($this->model->getModel()->fillable));
     }
 
     /**
@@ -45,20 +49,9 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Book $book)
-    {
-        //
+        return $this->model->show($id);
     }
 
     /**
@@ -68,9 +61,11 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, $id)
     {
-        //
+       $this->model->update($request->only($this->model->getModel()->fillable), $id);
+
+       return $this->model->find($id);
     }
 
     /**
@@ -81,6 +76,6 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        return $this->model->delete($id);
     }
 }
