@@ -2,7 +2,17 @@
     <div>
         <h3 class="text-center">All Books</h3><br/>
 
-        <table class="table table-bordered">
+       <div class="text-center">
+            <a
+                class="btn btn-danger"
+                href="http://localhost:8000/api/export"
+                download="books.xlsx"
+            >
+            Export
+            </a>
+        </div>
+
+        <table class="table table-bordered mt-3">
             <thead>
             <tr>
                 <th>ID</th>
@@ -55,7 +65,7 @@
                         let i = this.books.map(item => item.id).indexOf(id); // find index of your object
                         this.books.splice(i, 1)
                     });
-            }
+            },
         }
     }
 </script>

@@ -2031,6 +2031,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37848,8 +37858,10 @@ var render = function() {
     _c("h3", { staticClass: "text-center" }, [_vm._v("All Books")]),
     _c("br"),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-bordered" }, [
-      _vm._m(0),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-bordered mt-3" }, [
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -37903,6 +37915,24 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger",
+          attrs: {
+            href: "http://localhost:8000/api/export",
+            download: "books.xlsx"
+          }
+        },
+        [_vm._v("\n        Export\n        ")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

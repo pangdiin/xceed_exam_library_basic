@@ -8,5 +8,10 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Api'], function() {
 	Route::resource('book', 'BookController');
+
+	/**
+	 * export book route
+	 */
+	Route::get('export', 'ExportController@export')->name('export');
 });
 
