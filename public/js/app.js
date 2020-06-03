@@ -1974,12 +1974,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('http://localhost:8000/api/book', this.book).then(function (response) {
         return _this.$router.push({
           name: 'home'
-        }) // console.log(response.data)
-        ;
+        });
       })["catch"](function (error) {
         return console.log(error);
-      })["finally"](function () {
-        return _this.loading = false;
       });
     }
   }

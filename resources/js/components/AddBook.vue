@@ -32,10 +32,8 @@
                     .post('http://localhost:8000/api/book', this.book)
                     .then(response => (
                         this.$router.push({name: 'home'})
-                        // console.log(response.data)
                     ))
-                    .catch(error => console.log(error))
-                    .finally(() => this.loading = false)
+                    .catch(error => console.log(error));
             }
         }
     }
