@@ -61,11 +61,11 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-       $this->model->update($request->only($this->model->getModel()->fillable), $id);
+       $response =  $this->model->update($request->only($this->model->getModel()->fillable), $id);
 
-       return $this->model->find($id);
+       return response()->json('successfully updated');
     }
 
     /**
@@ -74,7 +74,7 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy($id)
     {
         return $this->model->delete($id);
     }

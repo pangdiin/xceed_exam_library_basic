@@ -30,7 +30,7 @@ class BookRepository implements BookRepositoryInterface
     // update record in the database
     public function update(array $data, $id)
     {
-        $record = $this->find($id);
+        $record = $this->model->find($id);
 
         return $record->update($data);
     }
