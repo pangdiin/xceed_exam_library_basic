@@ -51,4 +51,23 @@ class BookTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * @test
+     */
+    public function a_book_can_be_deleted()
+    {
+        $this->post('/api/book', [
+            'name' => 'Planet apes',
+            'author' => 'Guill'
+        ]);
+
+        $book = Book::first();
+
+        $this->assertCount(1, Book::all());
+
+        $response = $this->delete('/api/book/' . $book->id);
+
+        $this->assertCount(0, Book::all());
+    }
+
 }
